@@ -2,9 +2,9 @@ extern crate ggez;
 
 use ggez::Context;
 use ggez::graphics::Image;
-use std::rc::Rc;
 use std::any::Any;
 use std::collections::HashMap;
+use std::rc::Rc;
 
 
 pub trait Loadable {

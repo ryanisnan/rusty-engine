@@ -1,6 +1,6 @@
+use ggez::graphics::Image;
 use std::collections::HashMap;
 use std::rc::Rc;
-use ggez::graphics::Image;
 
 pub trait Entity {} // Things that can be placed into the world will all implement this functionality
 
