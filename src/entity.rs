@@ -1,50 +1,15 @@
+use ggez::Context;
 use ggez::graphics::Image;
 use std::any::Any;
 use std::collections::HashMap;
-use std::collections::hash_map::Entry;
-use std::hash::Hash;
 use std::rc::Rc;
 
-pub trait Entity {} // Things that can be placed into the world will all implement this functionality
 
+// Trait that all world entities must implement
+pub trait Entity {}
 
-#[derive(Debug)]
-pub struct DecorationType {
-    pub image: Rc<Image>
-}
-
-#[derive(Debug)]
-pub struct Decoration {
-    pub meta: Rc<DecorationType>,
-}
-
-#[derive(Debug)]
-pub struct DecorationLibrary {
-    pub decorations: HashMap<String, Rc<DecorationType>>
-}
-
-impl DecorationLibrary {
-    pub fn new() -> Self {
-        DecorationLibrary {
-            decorations: HashMap::new(),
-        }
-    }
-
-    pub fn load(&mut self, decoration_id: &str, decoration_type: DecorationType) {
-        self.decorations.insert(String::from(decoration_id), Rc::new(decoration_type));
-    }
-}
-
-
-
-
-
-
+// Data structure that holds prototypes for the various entities used in the game
 pub struct EntityLibrary {
-    /*
-        Holds a hash of types of entities and the various entities corresponding
-        to each type.
-    */
     entities: HashMap<String, Box<Any>>,
 }
 
