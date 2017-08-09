@@ -2,8 +2,7 @@ extern crate ggez;
 
 use assets::AssetLoader;
 use ggez::graphics::Image;
-use ggez::Context;
-use entity::{DecorationLibrary, Decoration, DecorationType};
+use entity::{DecorationLibrary, Decoration};
 
 use std::collections::HashMap;
 use std::rc::Rc;
@@ -12,7 +11,7 @@ pub const TILE_WIDTH: u32 = 128;
 pub const TILE_HEIGHT: u32 = 128;
 
 #[derive(Debug)]
-pub struct TileMeta {
+pub struct TileType {
     // Defines data common across various types of tiles (Flyweight Pattern)
     pub image: Rc<Image>,
     pub is_walkable: bool
@@ -21,14 +20,14 @@ pub struct TileMeta {
 #[derive(Debug)]
 pub struct Tile {
     // Represents a game tile in the world
-    pub meta: Rc<TileMeta>,
+    pub meta: Rc<TileType>,
     pub decorations: Option<Vec<Decoration>>,
 }
 
 #[derive(Debug)]
 pub struct TileLibrary {
     // Represents a library of different tile types
-    tiles: HashMap<String, Rc<TileMeta>>
+    pub tiles: HashMap<String, Rc<TileType>>
 }
 
 impl TileLibrary {
@@ -38,8 +37,8 @@ impl TileLibrary {
         }
     }
 
-    pub fn load_tile(&mut self, tile_id: &str, tile_meta: TileMeta) {
-        self.tiles.insert(String::from(tile_id), Rc::new(tile_meta));
+    pub fn load(&mut self, tile_id: &str, tile_type: TileType) {
+        self.tiles.insert(String::from(tile_id), Rc::new(tile_type));
     }
 }
 
@@ -51,26 +50,21 @@ pub struct World {
     pub rows: u32,
     pub columns: u32,
 
-    asset_loader: AssetLoader,
-    tile_library: TileLibrary,
-    decorations_library: DecorationLibrary
+    pub asset_loader: AssetLoader,
+    pub tile_library: TileLibrary,
+    pub decorations_library: DecorationLibrary
 }
 
 impl World {
-    pub fn new(name: String, ctx: &mut Context) -> Self {
-        let mut asset_loader = AssetLoader::new();
-
-        let tile_library = TileLibrary::new();
-        let decorations_library = DecorationLibrary::new(ctx, &mut asset_loader);
-
+    pub fn new(name: String) -> Self {
         World {
             name: name,
             data: Vec::new(),
             rows: 10,
             columns: 10,
-            asset_loader: asset_loader,
-            tile_library: tile_library,
-            decorations_library: decorations_library,
+            asset_loader: AssetLoader::new(),
+            tile_library: TileLibrary::new(),
+            decorations_library: DecorationLibrary::new(),
         }
     }
 
