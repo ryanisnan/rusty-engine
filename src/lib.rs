@@ -1,9 +1,9 @@
 extern crate ggez;
 
-mod assets;
-mod entity;
-mod camera;
-mod world;
+pub mod assets;
+pub mod entity;
+pub mod camera;
+pub mod world;
 
 mod engine {
 
