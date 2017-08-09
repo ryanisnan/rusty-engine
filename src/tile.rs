@@ -4,7 +4,6 @@ use std::rc::Rc;
 
 use decoration::Decoration;
 
-
 #[derive(Debug)]
 pub struct TileType {
     // Defines data common across various types of tiles (Flyweight Pattern)
