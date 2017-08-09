@@ -1,9 +1,6 @@
-use ggez::Context;
-use ggez::graphics::Image;
 use std::any::Any;
 use std::collections::HashMap;
 use std::rc::Rc;
-
 
 // Trait that all world entities must implement
 pub trait Entity {}
