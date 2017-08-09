@@ -1,0 +1,6 @@
+[package]
+name = "rusty-engine"
+version = "0.1.0"
+authors = ["ryanisnan <ryanisnan@gmail.com>"]
+
+[dependencies]
