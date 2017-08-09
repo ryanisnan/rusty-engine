@@ -1,4 +1,3 @@
-extern crate rand;
 extern crate ggez;
 
 use assets::AssetLoader;
