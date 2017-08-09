@@ -2,7 +2,7 @@ use ggez::graphics::Image;
 use std::collections::HashMap;
 use std::rc::Rc;
 
-use entity::Decoration;
+use decoration::Decoration;
 
 
 #[derive(Debug)]
