@@ -1,13 +1,9 @@
 extern crate ggez;
 
-use assets::AssetLoader;
-use entity::{DecorationLibrary};
-use tile::{Tile, TileLibrary};
-
+use tile::Tile;
 
 pub const TILE_WIDTH: u32 = 128;
 pub const TILE_HEIGHT: u32 = 128;
-
 
 #[derive(Debug)]
 pub struct World {
@@ -15,11 +11,7 @@ pub struct World {
 
     pub data: Vec<Vec<Tile>>,
     pub rows: u32,
-    pub columns: u32,
-
-    pub asset_loader: AssetLoader,
-    pub tile_library: TileLibrary,
-    pub decorations_library: DecorationLibrary
+    pub columns: u32
 }
 
 impl World {
@@ -29,9 +21,6 @@ impl World {
             data: Vec::new(),
             rows: 10,
             columns: 10,
-            asset_loader: AssetLoader::new(),
-            tile_library: TileLibrary::new(),
-            decorations_library: DecorationLibrary::new(),
         }
     }
 
