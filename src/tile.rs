@@ -5,7 +5,7 @@ use std::rc::Rc;
 use decoration::Decoration;
 
 #[derive(Debug)]
-pub struct TileType {
+pub struct TilePrototype {
     // Defines data common across various types of tiles (Flyweight Pattern)
     pub image: Rc<Image>,
     pub is_walkable: bool
@@ -14,14 +14,14 @@ pub struct TileType {
 #[derive(Debug)]
 pub struct Tile {
     // Represents a game tile in the world
-    pub meta: Rc<TileType>,
+    pub meta: Rc<TilePrototype>,
     pub decorations: Option<Vec<Decoration>>,
 }
 
 #[derive(Debug)]
 pub struct TileLibrary {
     // Represents a library of different tile types
-    pub tiles: HashMap<String, Rc<TileType>>
+    pub tiles: HashMap<String, Rc<TilePrototype>>
 }
 
 impl TileLibrary {
@@ -31,7 +31,7 @@ impl TileLibrary {
         }
     }
 
-    pub fn load(&mut self, tile_id: &str, tile_type: TileType) {
+    pub fn load(&mut self, tile_id: &str, tile_type: TilePrototype) {
         self.tiles.insert(String::from(tile_id), Rc::new(tile_type));
     }
 }
