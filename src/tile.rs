@@ -7,7 +7,7 @@ use decoration::Decoration;
 #[derive(Debug)]
 pub struct TilePrototype {
     // Defines data common across various types of tiles (Flyweight Pattern)
-    pub image: Rc<Image>,
+    pub image: Image,
     pub is_walkable: bool
 }
 
