@@ -4,7 +4,7 @@ use std::rc::Rc;
 
 #[derive(Debug)]
 pub struct DecorationPrototype {
-    pub image: Rc<Image>
+    pub image: Image
 }
 
 #[derive(Debug)]
