@@ -34,7 +34,8 @@ impl World {
         self.rows * TILE_HEIGHT
     }
 
-    pub fn get_tiles(&self, left: f32, right: f32, top: f32, bottom: f32) -> Vec<Vec<&Tile>> {
+    pub fn get_subset(&self, left: f32, right: f32, top: f32, bottom: f32) -> Vec<Vec<&Tile>> {
+        // Return a subset of tiles in a matrix form that are within the supplied constraints
         let idx_left = (left / TILE_WIDTH as f32).floor() as usize;
         let mut idx_right = (right / TILE_WIDTH as f32).floor() as usize;
         let idx_top = (top / TILE_HEIGHT as f32).floor() as usize;
@@ -47,10 +48,6 @@ impl World {
         if idx_bottom >= self.rows as usize {
             idx_bottom = (self.rows - 1) as usize;
         }
-
-        // println!("Cam stuff: {} {} {} {}", left, right, top, bottom);
-        // println!("Indexes in the world are: Left - {}, Right - {}", idx_left, idx_right);
-        // println!("Indexes in the world are: Top - {}, Bottom - {}", idx_top, idx_bottom);
 
         let mut tmp_rows: Vec<Vec<&Tile>> = Vec::new();
         for i in idx_top..(idx_bottom + 1) {
