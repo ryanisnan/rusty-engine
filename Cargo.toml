@@ -5,6 +5,3 @@ authors = ["ryanisnan <ryanisnan@gmail.com>"]
 
 [dependencies]
 ggez = "0.3.3"
-
-[features]
-cargo-resource-root = []
