@@ -1,5 +1,7 @@
 extern crate ggez;
 
+use ggez::graphics::Rect;
+
 use tile::Tile;
 
 pub const TILE_WIDTH: u32 = 128;
@@ -34,12 +36,14 @@ impl World {
         self.rows * TILE_HEIGHT
     }
 
-    pub fn get_subset(&self, left: f32, right: f32, top: f32, bottom: f32) -> Vec<Vec<&Tile>> {
-        // Return a subset of tiles in a matrix form that are within the supplied constraints
-        let idx_left = (left / TILE_WIDTH as f32).floor() as usize;
-        let mut idx_right = (right / TILE_WIDTH as f32).floor() as usize;
-        let idx_top = (top / TILE_HEIGHT as f32).floor() as usize;
-        let mut idx_bottom = (bottom / TILE_HEIGHT as f32).floor() as usize;
+    pub fn get_visible_subset(&self, rect: Rect) -> Vec<Vec<&Tile>> {
+        // Returns a subset of tiles (matrix form) that would be encapsulated by the supplied rectangle.
+        // Note: This method is greedy in that it will include whole tiles, so if tiles are partially
+        // out of the bounds, they will also be returned.
+        let idx_left = (rect.left() / TILE_WIDTH as f32).floor() as usize;
+        let mut idx_right = (rect.right() / TILE_WIDTH as f32).floor() as usize;
+        let idx_top = (rect.top() / TILE_HEIGHT as f32).floor() as usize;
+        let mut idx_bottom = (rect.bottom() / TILE_HEIGHT as f32).floor() as usize;
 
         if idx_right >= self.columns as usize {
             idx_right = (self.columns - 1) as usize;
