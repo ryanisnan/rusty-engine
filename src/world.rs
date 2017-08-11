@@ -26,12 +26,12 @@ impl World {
         }
     }
 
-    pub fn get_width(&self) -> u32 {
+    pub fn width(&self) -> u32 {
         // Get the width of the world in pixels
         self.columns * TILE_WIDTH
     }
 
-    pub fn get_height(&self) -> u32 {
+    pub fn height(&self) -> u32 {
         // Get the height of the world in pixels
         self.rows * TILE_HEIGHT
     }
