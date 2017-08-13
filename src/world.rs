@@ -1,7 +1,5 @@
 extern crate ggez;
 
-use ggez::graphics::Rect;
-
 use camera::Camera;
 use tile::Tile;
 
