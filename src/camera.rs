@@ -3,11 +3,11 @@ use ggez::graphics::Rect;
 #[derive(Debug)]
 pub struct Camera {
     // Represents our current "view" into an area
-    rect: Rect,
+    pub rect: Rect,
 
     // Represents the area in which we can move around
     // `rect` above must always fit inside of `boundaries`
-    boundaries: Rect,
+    pub boundaries: Rect,
 
     // Amounts that the camera should move
     horiz_scroll: f32,
@@ -65,20 +65,20 @@ impl Camera {
     }
 
     pub fn move_up(&mut self) {
-        if (self.rect.top() - self.vert_scroll) >= self.boundaries.top() {
-            self.rect.y -= self.vert_scroll;
+        if (self.rect.top() + self.vert_scroll) <= self.boundaries.top() {
+            self.rect.y += self.vert_scroll;
         } else {
-            self.rect.y = self.boundaries.top() + self.rect.h / 2.0;
+            self.rect.y = self.boundaries.top() - self.rect.h / 2.0;
         }
 
         println!("Camera::move_up() called - {:#?}", self);
     }
 
     pub fn move_down(&mut self) {
-        if (self.rect.bottom() + self.vert_scroll) <= self.boundaries.bottom() {
-            self.rect.y += self.vert_scroll;
+        if (self.rect.bottom() - self.vert_scroll) >= self.boundaries.bottom() {
+            self.rect.y -= self.vert_scroll;
         } else {
-            self.rect.y = self.boundaries.bottom() - self.rect.h / 2.0;
+            self.rect.y = self.boundaries.bottom() + self.rect.h / 2.0;
         }
 
         println!("Camera::move_down() called - {:#?}", self);

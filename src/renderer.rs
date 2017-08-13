@@ -48,6 +48,10 @@ impl Scene {
 
 pub struct Renderer {}
 impl Renderer {
+    pub fn new() -> Self {
+        Renderer {}
+    }
+
     pub fn draw_world(scene: &Scene, ctx: &mut Context) {
         graphics::clear(ctx);
 
