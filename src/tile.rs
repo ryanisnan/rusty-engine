@@ -2,7 +2,7 @@ use ggez::graphics::Image;
 use std::collections::HashMap;
 use std::rc::Rc;
 
-use decoration::Decoration;
+use entity::decoration::Decoration;
 
 #[derive(Debug)]
 pub struct TilePrototype {
