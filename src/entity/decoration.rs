@@ -1,5 +1,4 @@
 use ggez::graphics::Image;
-use ggez::graphics::Point;
 use std::collections::HashMap;
 use std::rc::Rc;
 
