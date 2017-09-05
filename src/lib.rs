@@ -4,6 +4,7 @@ pub mod tile;
 pub mod camera;
 pub mod world;
 pub mod entity;
+pub mod observer;
 
 #[cfg(test)]
 mod tests {
