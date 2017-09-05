@@ -30,14 +30,10 @@ impl DecorationLibrary {
 #[derive(Debug)]
 pub struct Decoration {
     pub meta: Rc<DecorationPrototype>,
-    is_moveable: bool,
 }
 
 impl Entity for Decoration {
-    fn is_moveable(&self) -> bool {
-        self.is_moveable
-    }
-
+    fn is_moveable(&self) -> bool { false }
     fn bind_camera(&self) {}
     fn unbind_camera(&self) {}
 }
