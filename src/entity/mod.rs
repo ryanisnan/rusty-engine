@@ -1,5 +1,10 @@
 pub mod decoration;
 
+use std::cell::RefCell;
+
+use ggez::graphics::Point;
+
+
 pub trait Entity {
     /*
         Defines behaviour of an object that can live in the world.
@@ -7,6 +12,5 @@ pub trait Entity {
     fn is_moveable(&self) -> bool { false }
     fn is_visible(&self) -> bool { true }
 
-    fn bind_camera(&self);
-    fn unbind_camera(&self);
+    fn get_point(&mut self) -> &mut Point;
 }

@@ -1,6 +1,9 @@
-use ggez::graphics::Image;
+use std::cell::RefCell;
 use std::collections::HashMap;
 use std::rc::Rc;
+
+use ggez::graphics::Image;
+use ggez::graphics::Point;
 
 use entity::Entity;
 
@@ -30,10 +33,12 @@ impl DecorationLibrary {
 #[derive(Debug)]
 pub struct Decoration {
     pub meta: Rc<DecorationPrototype>,
+    pub point: Point,
 }
 
 impl Entity for Decoration {
     fn is_moveable(&self) -> bool { false }
-    fn bind_camera(&self) {}
-    fn unbind_camera(&self) {}
+    fn get_point(&mut self) -> &mut Point {
+        &mut self.point
+    }
 }

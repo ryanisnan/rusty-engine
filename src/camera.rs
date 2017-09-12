@@ -1,4 +1,9 @@
+use std::fmt::Debug;
+
 use ggez::graphics::Rect;
+
+use entity::Entity;
+
 
 #[derive(Debug)]
 pub struct Camera {
@@ -12,6 +17,8 @@ pub struct Camera {
     // Amounts that the camera should move
     horiz_scroll: f32,
     vert_scroll: f32,
+
+    debug: bool
 }
 
 impl Camera {
@@ -21,6 +28,7 @@ impl Camera {
             boundaries,
             horiz_scroll: 32.0,
             vert_scroll: 32.0,
+            debug: false
         }
     }
 
@@ -51,7 +59,9 @@ impl Camera {
             self.rect.x = self.boundaries.left() + self.rect.w / 2.0;
         }
 
-        println!("Camera::move_left() called - {:#?}", self);
+        if self.debug {
+            println!("Camera::move_left() called - {:#?}", self);
+        }
     }
 
     pub fn move_right(&mut self) {
@@ -61,7 +71,9 @@ impl Camera {
             self.rect.x = self.boundaries.right() - self.rect.w / 2.0;
         }
 
-        println!("Camera::move_right() called - {:#?}", self);
+        if self.debug {
+            println!("Camera::move_right() called - {:#?}", self);
+        }
     }
 
     pub fn move_up(&mut self) {
@@ -71,7 +83,9 @@ impl Camera {
             self.rect.y = self.boundaries.top() - self.rect.h / 2.0;
         }
 
-        println!("Camera::move_up() called - {:#?}", self);
+        if self.debug {
+            println!("Camera::move_up() called - {:#?}", self);
+        }
     }
 
     pub fn move_down(&mut self) {
@@ -81,6 +95,12 @@ impl Camera {
             self.rect.y = self.boundaries.bottom() + self.rect.h / 2.0;
         }
 
-        println!("Camera::move_down() called - {:#?}", self);
+        if self.debug {
+            println!("Camera::move_down() called - {:#?}", self);
+        }
+    }
+
+    pub fn bind_to<T: Entity + Debug>(&mut self, object: &T) {
+        println!("Bound to {:?}", object);
     }
 }

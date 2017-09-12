@@ -5,6 +5,7 @@ pub mod camera;
 pub mod world;
 pub mod entity;
 pub mod observer;
+pub mod physics;
 
 #[cfg(test)]
 mod tests {
